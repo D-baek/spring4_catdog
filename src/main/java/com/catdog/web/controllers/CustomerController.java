@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.catdog.web.serviceimpls.CustomerServiceImpl;
 
-
+//test
 @Controller
 @RequestMapping("/customer/*")
 public class CustomerController {
