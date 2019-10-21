@@ -61,11 +61,8 @@ auth =(()=>{
     }
         let login =()=>{
             let x = {css : $.css(), img : $.img()}
-            $('head')
-            .html(auth_vue.login_head(x))
-            $('body')
-            .addClass('text-center')
-            .html(auth_vue.login_body(x))
+            $('head').html(auth_vue.login_head(x))
+            $('body').addClass('text-center').html(auth_vue.login_body(x))
             $('<button>',{
                 text : "로그인",
                 type : "submit",
@@ -76,7 +73,7 @@ auth =(()=>{
                         cid : $('#cid').val(),
                         pwd : $('#pwd').val()
                     }
-                    alert('cid : '+login_data.cid)
+                    alert('cid : '+login_data.cid+','+'pwd : '+login_data.pwd+','+'pname : '+login_data.pname)
                     $.ajax({
                         //전부다 스트링값 뒤에틑 값이니까 객체도 들어오고 스트링도 들어오고 함
                         url : _+'/customer/login',
@@ -86,19 +83,22 @@ auth =(()=>{
                         contentType : 'application/json',//밈 -->jsp에서 contentType="text/html"내가던지는 녀석이 다른쪽에서도 
                         success :  d=>{
                             alert(d.pname+'님 환영합니다')
+                            mypage(d)
                         },
                         error : e=>{
                             alert(WHEN_ERR)
                         }
-                        
                     })
                 }
             })
             .addClass("btn btn-lg btn-primary btn-bloc")
             .appendTo('#login_btn')
         }
+        let mypage =d=>{
+        	$('body').html(auth_vue.mypage(d))
+        }
         
-        return{onCreate ,join ,login}
+        return{onCreate ,join ,login, mypage}
         
 })();
 //          $('<button>',{

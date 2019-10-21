@@ -15,22 +15,13 @@
         
     </resultMap>
 
-    <select id="getUser" resultMap="Customer">
-        select * from users
+    <select id="selectCustomerById" resultMap="Customer">
+        SELECT * FROM CUSTOMER
+        WHERE CID LIKE #{cid};
     </select>
-    <insert id="insert">
-        insert into users (cid, pwd, creditCard, pname, phone, address, email) values (
+    <insert id="insertCustomer" parameterType = "com.catdog.web.domains.CustomerDTO">
+        insert into customer (cid, pwd, creditCard, pname, phone, address, email) values (
             #{cid}, #{pwd}, #{creditCard}, #{pname}, #{phone}, #{address}, #{email}  <!-- # = ? -->
         )
     </insert>
-
-    <select id="getUser2" resultMap="usermap2">
-        select * from users2
-    </select>
-    <insert id="insert2">
-        insert into users2 (id, name, funkyNumber, roundingMode) values (
-            #{id}, #{name}, #{funkyNumber}, #{roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
-        )
-    </insert>
-
 </mapper>

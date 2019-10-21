@@ -114,9 +114,8 @@ auth_vue = {
         '          <label for="username">Username</label>'+
         '          <div class="input-group">'+
         '            <div class="input-group-prepend">'+
-        '              <span class="input-group-text">@</span>'+
         '            </div>'+
-        '            <input type="text" class="form-control" id="username" placeholder="Username" required="">'+
+        '            <input id = "pname" type="text" class="form-control" placeholder="이름" required="">'+
         '            <div class="invalid-feedback" style="width: 100%;">'+
         '              Your username is required.'+
         '            </div>'+
@@ -137,8 +136,8 @@ auth_vue = {
         '          </div>'+
         '        </div>'+
         '        <div class="mb-3">'+
-        '          <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>'+
-        '          <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">'+
+        '          <label for="ssn">주민번호<span class="text-muted"></span></label>'+
+        '          <input type="text" class="form-control" id="ssn" placeholder="주민번호를 입력하세요.">'+
         '        </div>'+
         '        <div class="row">'+
         '          <div class="col-md-5 mb-3">'+
@@ -294,9 +293,7 @@ auth_vue = {
 		'  </div>'+
 		'</form>'
 	},
-	mypage : ()=>{
-		return ''
+	mypage : d=>{
+		return '<h1>마이페이지입니다. '+d.cid+d.pwd+d.pname+'</h1>'
 	}
-	
-	
 };

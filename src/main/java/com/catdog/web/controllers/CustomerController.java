@@ -38,19 +38,23 @@ public class CustomerController {
 	@PostMapping("/join")
 	public @ResponseBody Map<?,?> join(@RequestBody CustomerDTO customer) {//<?,?> ?는 와일드 카드 
 //		request.getparameter("cid")를 안해도 가져올수 있다.
-		logger.info("ajax가 보낸 아이디와 비번입니다 {} ",customer.getCid()+","+customer.getPwd());
+		logger.info("ajax가 보낸 아이디와 비번입니다 {} ",customer.getCid()+","+customer.getPwd()+customer.getPname());
 		Map<String, Object> map2 = new HashMap<>();
 		map2.put("cid", customer.getCid());
 		map2.put("pwd",customer.getPwd());
-		logger.info("map에 담긴 아이디와 비번입니다 {} ",map2.get("cid")+","+map2.get("pwd"));
+		map2.put("pname",customer.getPname());
+		customerService.join(customer);
+		logger.info("map에 담긴 아이디와 비번입니다 {} ",map2.get("cid")+","+map2.get("pwd")+","+map2.get("pname"));
 		return map2;
 	} 
 	
 	@PostMapping("/login")
 	public @ResponseBody CustomerDTO login(@RequestBody CustomerDTO param){
-		logger.info("ajax가 보낸 아이디와 비번입니다 {} ",param.getCid()+","+param.getPwd());
+		logger.info("ajax가 보낸 아이디와 비번입니다 {} ",param.getCid()+","+param.getPwd()+","+param.getPname());
 		cust.setCid(param.getCid());
 		cust.setPwd(param.getPwd());
+		cust.setPname(param.getPname());
+		cust=customerService.login(param);
 		logger.info("cust에 보낸 사용자 정보 :  {} ", cust.toString());
 		return cust;
 	}
