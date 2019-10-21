@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.catdog.web.mappers.CustomerMapper">
+    <resultMap type="com.catdog.web.domains.CustomerDTO" id="Customer">
+        <id column="cid" property="cid"/>  <!-- PK -->
+        <result column="pwd" property="pwd"/>
+        <result column="ssn" property="ssn"/>
+        <result column="creditCard" property="creditCard"/>
+        <result column="pname" property="pname"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="email" property="email"/>
+        
+    </resultMap>
+
+    <select id="getUser" resultMap="Customer">
+        select * from users
+    </select>
+    <insert id="insert">
+        insert into users (cid, pwd, creditCard, pname, phone, address, email) values (
+            #{cid}, #{pwd}, #{creditCard}, #{pname}, #{phone}, #{address}, #{email}  <!-- # = ? -->
+        )
+    </insert>
+
+    <select id="getUser2" resultMap="usermap2">
+        select * from users2
+    </select>
+    <insert id="insert2">
+        insert into users2 (id, name, funkyNumber, roundingMode) values (
+            #{id}, #{name}, #{funkyNumber}, #{roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+        )
+    </insert>
+
+</mapper>
